@@ -239,7 +239,7 @@ class VideoLooper(object):
                             self.quit()
                         if event.key == pygame.K_SPACE or pygame.K_0 or event.key == pygame.K_KP0 or event.key == pygame.K_KP_ENTER:
                            # TODO: pause
-                           self._player.pause()
+                           # self._player.pause()
                         if event.key == pygame.K_KP_MINUS:
                            # TODO: prev video
                         if event.key == pygame.K_KP_PLUS:
