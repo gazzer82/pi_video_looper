@@ -239,42 +239,52 @@ class VideoLooper(object):
                             self.quit()
                         if event.key == pygame.K_SPACE or pygame.K_0 or event.key == pygame.K_KP0 or event.key == pygame.K_KP_ENTER:
                            # TODO: pause
+                           self._player.pause()
                         if event.key == pygame.K_KP_MINUS:
                            # TODO: prev video
                         if event.key == pygame.K_KP_PLUS:
                            # TODO: next video
-                        if event.key == pygame.K_1 or event.key == pygame.K_KP1:
-                           # TODO: video 1
-                        if event.key == pygame.K_2 or event.key == pygame.K_KP2:
-                           # TODO: video 2
-                        if event.key == pygame.K_3 or event.key == pygame.K_KP3:
-                           # TODO: video 3
-                        if event.key == pygame.K_4 or event.key == pygame.K_KP4:
-                           # TODO: video 4
-                        if event.key == pygame.K_5 or event.key == pygame.K_KP5:
-                           # TODO: video 5
-                        if event.key == pygame.K_6 or event.key == pygame.K_KP6:
-                           # TODO: video 6
-                        if event.key == pygame.K_7 or event.key == pygame.K_KP7:
-                           # TODO: video 7
-                        if event.key == pygame.K_8 or event.key == pygame.K_KP8:
-                           # TODO: video 8
-                        if event.key == pygame.K_9 or event.key == pygame.K_KP9:
-                           # TODO: video 9
+                           movie = playlist.get_next()
+                           if movie is not None:
+                              # Start playing the first available movie.
+                              self._print('Playing movie: {0}'.format(movie))
+                              self._player.play(movie, loop=playlist.length() == 1, vol = self._sound_vol)
+                        # if event.key == pygame.K_1 or event.key == pygame.K_KP1:
+                        #    # TODO: video 1
+                        # if event.key == pygame.K_2 or event.key == pygame.K_KP2:
+                        #    # TODO: video 2
+                        # if event.key == pygame.K_3 or event.key == pygame.K_KP3:
+                        #    # TODO: video 3
+                        # if event.key == pygame.K_4 or event.key == pygame.K_KP4:
+                        #    # TODO: video 4
+                        # if event.key == pygame.K_5 or event.key == pygame.K_KP5:
+                        #    # TODO: video 5
+                        # if event.key == pygame.K_6 or event.key == pygame.K_KP6:
+                        #    # TODO: video 6
+                        # if event.key == pygame.K_7 or event.key == pygame.K_KP7:
+                        #    # TODO: video 7
+                        # if event.key == pygame.K_8 or event.key == pygame.K_KP8:
+                        #    # TODO: video 8
+                        # if event.key == pygame.K_9 or event.key == pygame.K_KP9:
+                        #    # TODO: video 9
 
             # Give the CPU some time to do other tasks.
             time.sleep(0.002)
 
-    def quit(self):
-        """Shut down the program"""
-        self._running = False
-        if self._player is not None:
-            self._player.stop()
-        pygame.quit()
+   def pause(self):
+      if self._player is not None:
+         self._player.stop()
 
-    def signal_quit(self, signal, frame):
-        """Shut down the program, meant to by called by signal handler."""
-        self.quit()
+   def quit(self):
+      """Shut down the program"""
+      self._running = False
+      if self._player is not None:
+         self._player.stop()
+      pygame.quit()
+
+   def signal_quit(self, signal, frame):
+      """Shut down the program, meant to by called by signal handler."""
+      self.quit()
 
 
 # Main entry point.
