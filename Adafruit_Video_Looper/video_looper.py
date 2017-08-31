@@ -193,7 +193,7 @@ class VideoLooper(object):
         self._screen.blit(label, (sw/2-lw/2, sh/2-lh/2+lh))
         companyHeader = self._render_text('UP Media Player')
         lcw, lch = companyHeader.get_size()
-        self._screen.blit(companyHeader, (sw/2-lw/2, sh/2-lh/2))
+        self._screen.blit(companyHeader, (sw/2-lcw/2, sh/2-lch/2))
         # If keyboard control is enabled, display message about it
         if self._keyboard_control:
             label2 = self._render_text('press ESC to quit')
